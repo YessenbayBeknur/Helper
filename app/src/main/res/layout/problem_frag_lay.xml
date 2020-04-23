@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/problem_frag_lay"
+    android:background="@color/White"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="20dp"
+            android:paddingStart="115dp"
+            app:singleSelection="true"
+            app:singleLine="true"
+            android:id="@+id/Chip_group"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="10dp">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/all_chip"
+                android:text="All"
+                android:textColor="@color/White"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                app:chipBackgroundColor="@color/Glavni"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Portal"
+                android:id="@+id/portal_chip"
+                android:textColor="@color/Grey"
+                app:chipBackgroundColor="@color/White"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                 />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Ashana"
+                android:id="@+id/ashana_chip"
+                android:textColor="@color/Grey"
+                app:chipBackgroundColor="@color/White"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/Grey"
+                app:chipBackgroundColor="@color/White"
+                android:text="Univer"
+                android:id="@+id/university_chip"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                />
+
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/Grey"
+                app:chipBackgroundColor="@color/White"
+                android:text="Club"
+                android:id="@+id/club_chip"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                 />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <ListView
+        android:id="@+id/problem_list"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="10dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="15dp"
+        android:scrollbars="none">
+    </ListView>
+
+    <Button
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/ic_add_prob_post_24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/add_prob_post"
+        >
+    </Button>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
