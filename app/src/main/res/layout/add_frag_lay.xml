@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/Grey_cardView_post"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setTitlelayout">
+
+        <TextView
+            android:id="@+id/TTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:text="Post title:"
+            android:textColor="@color/Glavni"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="210dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/TTitle"
+        android:layout_marginLeft="10dp"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/add_title_post"
+        android:background="@drawable/add_edittext"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            >
+
+        <TextView
+            android:id="@+id/TType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post type:"
+            android:layout_marginLeft="12dp"
+            android:textColor="@color/Glavni"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/TType"
+            android:id="@+id/Spinner_type"
+            ></Spinner>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/content_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:text="Post content:"
+            android:textColor="@color/Glavni"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_below="@+id/content_post"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/add_content_post"
+            android:background="@drawable/add_edittext"/>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:text="Post"
+            android:id="@+id/post_add_for_database"
+            android:textColor="@color/Glavni"
+            android:background="@drawable/add_edittext"
+            android:layout_below="@+id/add_content_post"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
 
 </LinearLayout>

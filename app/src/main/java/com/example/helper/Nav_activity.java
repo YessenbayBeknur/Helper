@@ -28,7 +28,7 @@ public class Nav_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mAuth;
-    Fragment fragment;
+    static Fragment fragment;
     static Toolbar toolbar;
 
     @Override
@@ -37,6 +37,7 @@ public class Nav_activity extends AppCompatActivity
         setContentView(R.layout.activity_nav_activity);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
 
 
         FragmentTransaction tran = getSupportFragmentManager().beginTransaction();
@@ -68,6 +69,7 @@ public class Nav_activity extends AppCompatActivity
 
 
     }
+
 
     @Override
     public void onBackPressed() {

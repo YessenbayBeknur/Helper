@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,8 +42,6 @@ public class Problem_frag extends Fragment {
     PostAdapter postAdapter;
     ArrayList<Post> posts;
     ArrayList<Post> sort_posts;
-    DateTimeFormatter dtf;
-    LocalDate localDate;
     static int last_id;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -50,6 +50,15 @@ public class Problem_frag extends Fragment {
 
         TextView frag_title = Nav_activity.toolbar.findViewById(R.id.frag_title);
         frag_title.setText("Problems");
+
+        Button add_button = view.findViewById(R.id.add_prob_post);
+        add_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new Add_post_frag();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_lt,fragment).commit();
+            }
+        });
 
         final ChipGroup choiceChipGroup = view.findViewById(R.id.Chip_group);
 
@@ -70,9 +79,7 @@ public class Problem_frag extends Fragment {
         sort_posts = new ArrayList<>();
         postAdapter = new PostAdapter(getContext(),posts);
 
-        dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        localDate = LocalDate.now();
-        dtf.format(localDate);
+
 
         ListView lv = view.findViewById(R.id.problem_list);
         lv.setAdapter(postAdapter);

@@ -20,21 +20,24 @@
             android:background="@color/Glavni"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/frag_title"
+                android:text="SDU helper"
+                android:textSize="21sp"
+                android:textColor="@color/White"
+                android:layout_gravity="center"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/frag_title"
-                    android:text="SDU helper"
-                    android:textSize="21sp"
-                    android:textColor="@color/White"
-                    android:layout_gravity="center"/>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-
+            <ImageButton
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:id="@+id/button_tool"
+                android:src="@drawable/ic_tune_black_24dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_marginRight="10dp"
+                />
 
         </androidx.appcompat.widget.Toolbar>
 
