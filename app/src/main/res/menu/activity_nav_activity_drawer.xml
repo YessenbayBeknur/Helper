@@ -18,10 +18,6 @@
             android:icon="@drawable/ic_message_black_24dp"
             android:title="Chat" />
         <item
-            android:id="@+id/nav_survey"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Survey" />
-        <item
             android:id="@+id/nav_exit"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:title="Exit" />

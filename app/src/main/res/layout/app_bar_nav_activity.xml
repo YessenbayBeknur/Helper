@@ -8,25 +8,34 @@
 
     >
 
+
+    <include layout="@layout/frame_lt_nav_activity" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:background="#00000000"
+        android:elevation="0dp"
+        app:elevation="0dp"
+
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/Glavni"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            android:background="#00000000"
+            android:elevation="0dp"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/frag_title"
                 android:text="SDU helper"
-                android:textSize="21sp"
-                android:textColor="@color/White"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:textColor="@color/Glavni"
                 android:layout_gravity="center"/>
 
             <ImageButton
@@ -34,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_gravity="end"
                 android:id="@+id/button_tool"
-                android:src="@drawable/ic_tune_black_24dp"
+                android:src="@drawable/ic_tune_24dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:layout_marginRight="10dp"
                 />
@@ -43,7 +52,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/frame_lt_nav_activity" />
 
 
 

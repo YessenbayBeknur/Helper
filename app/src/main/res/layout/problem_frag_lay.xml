@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/problem_frag_lay"
-    android:background="@color/White"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -21,6 +20,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="7dp"
+            android:background="@android:color/transparent"
             android:layout_marginTop="10dp">
 
             <com.google.android.material.chip.Chip
@@ -40,9 +40,9 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Portal"
+                app:chipBackgroundColor="@color/tran"
                 android:id="@+id/portal_chip"
                 android:textColor="@color/Grey"
-                app:chipBackgroundColor="@color/White"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                  />
@@ -54,7 +54,7 @@
                 android:text="Ashana"
                 android:id="@+id/ashana_chip"
                 android:textColor="@color/Grey"
-                app:chipBackgroundColor="@color/White"
+                app:chipBackgroundColor="@color/tran"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 />
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/Grey"
-                app:chipBackgroundColor="@color/White"
+                app:chipBackgroundColor="@color/tran"
                 android:text="Univer"
                 android:id="@+id/university_chip"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/Grey"
-                app:chipBackgroundColor="@color/White"
+                app:chipBackgroundColor="@color/tran"
                 android:text="Club"
                 android:id="@+id/club_chip"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
@@ -90,6 +90,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         >
     <ListView
         android:id="@+id/problem_list"

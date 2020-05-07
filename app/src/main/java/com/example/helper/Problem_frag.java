@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -24,8 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -43,12 +43,13 @@ public class Problem_frag extends Fragment {
     ArrayList<Post> posts;
     ArrayList<Post> sort_posts;
     static int last_id;
+    static Post checked_post;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.problem_frag_lay,container,false);
 
-        TextView frag_title = Nav_activity.toolbar.findViewById(R.id.frag_title);
+        final TextView frag_title = Nav_activity.toolbar.findViewById(R.id.frag_title);
         frag_title.setText("Problems");
 
         Button add_button = view.findViewById(R.id.add_prob_post);
@@ -59,6 +60,8 @@ public class Problem_frag extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_lt,fragment).commit();
             }
         });
+
+
 
         final ChipGroup choiceChipGroup = view.findViewById(R.id.Chip_group);
 
@@ -72,7 +75,6 @@ public class Problem_frag extends Fragment {
 
         last_id = choiceChipGroup.getCheckedChipId();
 
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         posts = new ArrayList<>();
@@ -84,6 +86,14 @@ public class Problem_frag extends Fragment {
         ListView lv = view.findViewById(R.id.problem_list);
         lv.setAdapter(postAdapter);
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                checked_post = posts.get(i);
+                Fragment fragment = new Full_post();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_lt,fragment).commit();
+            }
+        });
         mDatabase.child("posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -130,7 +140,7 @@ public class Problem_frag extends Fragment {
 
                         if(checkedId == all_chip.getId()) {
                             Chip last_chip = group.findViewById(last_id);
-                            last_chip.setChipBackgroundColorResource(R.color.White);
+                            last_chip.setChipBackgroundColorResource(R.color.tran);
                             last_chip.setTextColor(getResources().getColor(R.color.Grey));
                             Chip current_chip = group.findViewById(checkedId);
                             current_chip.setChipBackgroundColorResource(R.color.Glavni);
@@ -142,7 +152,7 @@ public class Problem_frag extends Fragment {
                         }
                         else if(checkedId == portal_chip.getId()) {
                             Chip last_chip = group.findViewById(last_id);
-                            last_chip.setChipBackgroundColorResource(R.color.White);
+                            last_chip.setChipBackgroundColorResource(R.color.tran);
                             last_chip.setTextColor(getResources().getColor(R.color.Grey));
                             Chip current_chip = group.findViewById(checkedId);
                             current_chip.setChipBackgroundColorResource(R.color.Red_Portal);
@@ -158,7 +168,7 @@ public class Problem_frag extends Fragment {
                         }
                         else if(checkedId == ashana_chip.getId()) {
                             Chip last_chip = group.findViewById(last_id);
-                            last_chip.setChipBackgroundColorResource(R.color.White);
+                            last_chip.setChipBackgroundColorResource(R.color.tran);
                             last_chip.setTextColor(getResources().getColor(R.color.Grey));
                             Chip current_chip = group.findViewById(checkedId);
                             current_chip.setChipBackgroundColorResource(R.color.Yellow_Ashana);
@@ -172,7 +182,7 @@ public class Problem_frag extends Fragment {
                         }
                         else if(checkedId == university_chip.getId()) {
                             Chip last_chip = group.findViewById(last_id);
-                            last_chip.setChipBackgroundColorResource(R.color.White);
+                            last_chip.setChipBackgroundColorResource(R.color.tran);
                             last_chip.setTextColor(getResources().getColor(R.color.Grey));
                             Chip current_chip = group.findViewById(checkedId);
                             current_chip.setChipBackgroundColorResource(R.color.Green_Univer);
@@ -186,7 +196,7 @@ public class Problem_frag extends Fragment {
                         }
                         else if(checkedId == club_chip.getId()) {
                             Chip last_chip = group.findViewById(last_id);
-                            last_chip.setChipBackgroundColorResource(R.color.White);
+                            last_chip.setChipBackgroundColorResource(R.color.tran);
                             last_chip.setTextColor(getResources().getColor(R.color.Grey));
                             Chip current_chip = group.findViewById(checkedId);
                             current_chip.setChipBackgroundColorResource(R.color.Black_Club);

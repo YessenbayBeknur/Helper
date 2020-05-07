@@ -15,10 +15,14 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 
-import androidx.annotation.ColorInt;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -47,20 +51,27 @@ public class Add_post_frag extends Fragment implements AdapterView.OnItemSelecte
 
         spin_type.setOnItemSelectedListener(this);
 
-        dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        localDate = LocalDate.now();
-        dtf.format(localDate);
+
+        DateFormat df = new SimpleDateFormat("dd MMMM yyyy");
+        Date dateobj = new Date();
+        final String date = df.format(dateobj);
+
+
+        int random = (int)(Math.random() * 999999 + 100000);
+        final String id = Integer.toString(random);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String key = mDatabase.child("posts").push().getKey();
-                mDatabase.child("posts").child(key).setValue(new Post(post_title.getText().toString(),
-                        post_content.getText().toString(),dtf.format(localDate),types[cur_pos],color));
+                ArrayList<String> like = new ArrayList<>();
+                like.add(" ");
+                mDatabase.child("posts").child(id).setValue(new Post(post_title.getText().toString(),
+                        post_content.getText().toString(),date,types[cur_pos],color,id,Nav_activity.username.getText().toString().trim(),false,like));
                 Fragment fragment = new Problem_frag();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_lt,fragment).commit();
+
             }
         });
 
@@ -68,15 +79,6 @@ public class Add_post_frag extends Fragment implements AdapterView.OnItemSelecte
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spin_type.setAdapter(aa);
-
-
-
-
-
-
-
-
-
 
         return view;
     }

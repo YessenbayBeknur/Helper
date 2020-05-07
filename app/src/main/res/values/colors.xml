@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FAE8E8</color>
+    <color name="colorPrimary">#00000000</color>
     <color name="colorPrimaryDark">#1760d6</color>
     <color name="colorAccent">#1760d6</color>
     <color name="Login_blue">#1760d6</color>
@@ -11,6 +11,9 @@
     <color name="Green_Univer">#11EC1A</color>
     <color name="Black_Club">#000000</color>
     <color name="Glavni">#1B0C58</color>
-    <color name="Grey_cardView_post">#DBDBDD</color>
+    <color name="Grey_cardView_post">#d5d7e4</color>
+    <color name="black_alpha_40">#66000000</color>
+    <color name="full_zadnii">#d5d7e4</color>
+    <color name="tran">#00000000</color>
 
 </resources>

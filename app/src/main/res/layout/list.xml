@@ -2,8 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="150dp"
+    android:id="@+id/Card_view_list"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="@color/Grey_cardView_post"
+    android:descendantFocusability = "blocksDescendants"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
@@ -83,10 +85,20 @@
             android:layout_marginRight="10dp">
 
             <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/likes"
+                android:layout_toStartOf="@+id/Check_problem"
+                android:layout_marginRight="10dp"
+                android:background="@color/tran"
+                android:src="@drawable/ic_favorite_border_black_24dp"/>
+
+            <ImageButton
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:id="@+id/Check_problem"
                 android:src="@drawable/ic_check_box_outline_24dp"
+                android:background="@color/tran"
                 android:layout_alignParentEnd="true"
                 />
 

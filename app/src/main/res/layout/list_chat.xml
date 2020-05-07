@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardElevation="0dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:id="@+id/rel_lay">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="6dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/name_chat">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/image_chat"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chat_name2"
+            android:gravity="left"
+            android:background="@drawable/chat_name_back"
+            android:layout_toRightOf="@+id/name_chat">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp"
+                android:textSize="16dp"
+                android:text="aaaaaaaaaaaaaaa"
+                android:id="@+id/chat_text"
+                android:textColor="@color/White"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+**
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:id="@+id/rel_lay2">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="6dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/name_chat2">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/image_chat2"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chat_name22"
+            android:gravity="right"
+            android:background="@drawable/chat_name_back2"
+            android:layout_toLeftOf="@+id/name_chat2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp"
+                android:textSize="16dp"
+                android:text="aaaaaaaaaaaaaaa"
+                android:id="@+id/chat_text2"
+                android:textColor="@color/White"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>
