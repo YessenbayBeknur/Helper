@@ -1,6 +1,6 @@
 package com.example.helper;
 
-import android.graphics.Bitmap;
+
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -15,9 +15,9 @@ public class Post {
     private String who;
     private boolean solved;
     private ArrayList<String> likes;
-    private ArrayList<String> bitmaps;
+    private ArrayList<String> photos;
 
-    public Post (String title,String text,String date,String type,String color,String id,String who,boolean solved,ArrayList<String> likes,ArrayList<String> bitmaps){
+    public Post (String title,String text,String date,String type,String color,String id,String who,boolean solved,ArrayList<String> likes,ArrayList<String> photos){
         this.date = date;
         this.text = text;
         this.title = title;
@@ -27,19 +27,19 @@ public class Post {
         this.who = who;
         this.solved =solved;
         this.likes = likes;
-        this.bitmaps = bitmaps;
+        this.photos = photos;
     }
 
     public Post(){
 
     }
 
-    public void setBitmaps(ArrayList<String> bitmaps) {
-        this.bitmaps = bitmaps;
+    public void setPhotos(ArrayList<String> photos) {
+        this.photos = photos;
     }
 
-    public ArrayList<String> getBitmaps() {
-        return bitmaps;
+    public ArrayList<String> getPhotos() {
+        return photos;
     }
 
     public boolean isSolved() {

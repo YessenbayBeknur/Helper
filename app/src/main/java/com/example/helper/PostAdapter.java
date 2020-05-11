@@ -53,7 +53,7 @@ public class PostAdapter extends ArrayAdapter {
                 ArrayList<String> listWithoutDuplicates = new ArrayList<>(hashSet);
                 Post p = new Post(post_adap.get(position).getTitle(),post_adap.get(position).getText(),post_adap.get(position).getDate(),
                         post_adap.get(position).getType(),post_adap.get(position).getColor(),post_adap.get(position).getId(),
-                        post_adap.get(position).getWho(),post_adap.get(position).isSolved(),listWithoutDuplicates,post_adap.get(position).getBitmaps());
+                        post_adap.get(position).getWho(),post_adap.get(position).isSolved(),listWithoutDuplicates,post_adap.get(position).getPhotos());
                 mDatabase.child("posts").child(post_adap.get(position).getId()).removeValue();
                 mDatabase.child("posts").child(post_adap.get(position).getId()).setValue(p);
             }

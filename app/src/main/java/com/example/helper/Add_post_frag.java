@@ -19,12 +19,22 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnPausedListener;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -59,6 +69,11 @@ public class Add_post_frag extends Fragment implements AdapterView.OnItemSelecte
     static Bitmap bitmap;
     ArrayList<String> bitmaps = new ArrayList<>();
     static String imageB64;
+    FirebaseStorage storage;
+    ArrayList<String> photos;
+    String key;
+    String id;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -67,6 +82,8 @@ public class Add_post_frag extends Fragment implements AdapterView.OnItemSelecte
 
         TextView frag_title = Nav_activity.toolbar.findViewById(R.id.frag_title);
         frag_title.setText("Post");
+
+        photos = new ArrayList<>();
 
         final EditText post_title = view.findViewById(R.id.add_title_post);
         final EditText post_content = view.findViewById(R.id.add_content_post);
@@ -83,6 +100,8 @@ public class Add_post_frag extends Fragment implements AdapterView.OnItemSelecte
         Nav_activity.button_tool.setVisibility(View.INVISIBLE);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        key = mDatabase.child("posts").push().getKey();
+        id = key;
 
         but1 = view.findViewById(R.id.photo1);
         but2 = view.findViewById(R.id.photo2);
@@ -100,6 +119,28 @@ public class Add_post_frag extends Fragment implements AdapterView.OnItemSelecte
             }
         });
 
+        but2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                curr_but = but2;
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
+
+        but3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                curr_but = but3;
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
+
 
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,11 +148,21 @@ public class Add_post_frag extends Fragment implements AdapterView.OnItemSelecte
                 ArrayList<String> like = new ArrayList<>();
                 like.add(" ");
                 String hexColor = "#" + Integer.toHexString(color).substring(2);
-                String key = mDatabase.child("posts").push().getKey();
-                String id = key;
+
                 mDatabase.child("posts").child(id).setValue(new Post(post_title.getText().toString(),
                         post_content.getText().toString(),date,types[cur_pos],hexColor, id,Nav_activity.username.getText().toString().trim(),
-                        false,like,bitmaps));
+                        false,like,photos));
+
+
+
+
+
+
+
+
+
+
+
                 Fragment fragment = new Problem_frag();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_lt,fragment).commit();
 
@@ -139,11 +190,23 @@ public class Add_post_frag extends Fragment implements AdapterView.OnItemSelecte
                 bitmap = MediaStore.Images.Media.getBitmap(applicationContext.getContentResolver(), filePath);
                 curr_but.setImageBitmap(bitmap);
 
-                ByteArrayOutputStream bao = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
-                byte[] byteArray = bao.toByteArray();
-                imageB64 = Base64.encodeToString(byteArray, Base64.URL_SAFE);
-                bitmaps.add(imageB64);
+                storage = FirebaseStorage.getInstance();
+
+                StorageReference ref = storage.getReference().child(id + filePath.getEncodedPath());
+                ref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(getActivity(), "AAAAAAAA",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), "BBBBBBBBBBBB",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+                photos.add(id + filePath.getEncodedPath());
 
 
             }

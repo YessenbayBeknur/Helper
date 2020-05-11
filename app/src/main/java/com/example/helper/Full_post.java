@@ -1,16 +1,20 @@
 package com.example.helper;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityRecord;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,15 +23,23 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,7 +62,7 @@ public class Full_post extends Fragment {
     Bitmap bitmap1;
     Bitmap bitmap2;
     Bitmap bitmap3;
-
+    StorageReference pathReference;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -121,29 +133,70 @@ public class Full_post extends Fragment {
             }
         });
 
-        ImageButton but1 = view.findViewById(R.id.photo1_full);
-        ImageButton but2 = view.findViewById(R.id.photo2_full);
-        ImageButton but3 = view.findViewById(R.id.photo3_full);
+        final ImageButton but1 = view.findViewById(R.id.photo1_full);
+        final ImageButton but2 = view.findViewById(R.id.photo2_full);
+        final ImageButton but3 = view.findViewById(R.id.photo3_full);
 
-        ArrayList<String> bits = Problem_frag.checked_post.getBitmaps();
+
+        ArrayList<String> bits = Problem_frag.checked_post.getPhotos();
         if(bits != null){
         for (int i = 0; i < bits.size();i++){
-            if(i==0){
+            FirebaseStorage storage = FirebaseStorage.getInstance();
 
-                byte[] byteArray = Base64.decode(bits.get(i),Base64.URL_SAFE);
-                bitmap1 = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                but1.setImageBitmap(bitmap1);
-            }else if (i==1){
-                byte[] byteArray = Base64.decode(bits.get(i),Base64.URL_SAFE);
-                bitmap2 = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                but2.setImageBitmap(bitmap2);
-            }else if (i==2){
-                byte[] byteArray = Base64.decode(bits.get(i),Base64.URL_SAFE);
-                bitmap3 = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                but3.setImageBitmap(bitmap3);
+            if(i==0){
+                pathReference = storage.getReference().child(bits.get(i));
+                final long ONE_MEGABYTE = 1024 * 1024;
+                pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        bitmap1 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        but1.setImageBitmap(bitmap1);
+                        current_bitmap = bitmap1;
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle any errors
+                    }
+                });
             }
+
+            else if (i==1){
+                pathReference = storage.getReference().child(bits.get(i));
+                final long ONE_MEGABYTE = 1024 * 1024;
+                pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        bitmap2 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        but2.setImageBitmap(bitmap2);
+                        current_bitmap = bitmap2;
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle any errors
+                    }
+                });
+            }
+
+            else if (i==2){
+                pathReference = storage.getReference().child(bits.get(i));
+                final long ONE_MEGABYTE = 1024 * 1024;
+                pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        bitmap3 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        but3.setImageBitmap(bitmap3);
+                        current_bitmap = bitmap3;
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle any errors
+                    }
+                });
         }
-        }
+        }}
 
         but1.setOnClickListener(new View.OnClickListener() {
             @Override
