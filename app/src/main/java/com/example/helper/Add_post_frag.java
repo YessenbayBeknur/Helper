@@ -153,16 +153,6 @@ public class Add_post_frag extends Fragment implements AdapterView.OnItemSelecte
                         post_content.getText().toString(),date,types[cur_pos],hexColor, id,Nav_activity.username.getText().toString().trim(),
                         false,like,photos));
 
-
-
-
-
-
-
-
-
-
-
                 Fragment fragment = new Problem_frag();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_lt,fragment).commit();
 
@@ -236,7 +226,7 @@ public class Add_post_frag extends Fragment implements AdapterView.OnItemSelecte
             t.setTextColor(color);
         }
         else if(types[i].equals("LoseFind")){
-            color = getResources().getColor(R.color.Glavni);
+            color = getResources().getColor(R.color.losefind_roz);
             t.setTextColor(color);
         }
     }

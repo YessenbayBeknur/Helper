@@ -181,7 +181,7 @@ public class Full_post extends Fragment {
 
             else if (i==2){
                 pathReference = storage.getReference().child(bits.get(i));
-                final long ONE_MEGABYTE = 1024 * 1024;
+                final long ONE_MEGABYTE = 1024 * 1024 * 10;
                 pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                     @Override
                     public void onSuccess(byte[] bytes) {

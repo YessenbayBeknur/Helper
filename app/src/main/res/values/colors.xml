@@ -6,11 +6,13 @@
     <color name="Login_blue">#1760d6</color>
     <color name="White">#ffffff</color>
     <color name="Grey">#534C4c</color>
-    <color name="Red_Portal">#E20B0B</color>
-    <color name="Yellow_Ashana">#F7CE08</color>
-    <color name="Green_Univer">#11EC1A</color>
-    <color name="Black_Club">#000000</color>
+    <color name="Red_Portal">#00ff32</color>
+    <color name="Yellow_Ashana">#ff4443</color>
+    <color name="Green_Univer">#05fee0</color>
+    <color name="Black_Club">#ff9020</color>
     <color name="Glavni">#1B0C58</color>
+    <color name="losefind_roz">#ff20cc</color>
+    <color name="chat_user">#54C240</color>
     <color name="Grey_cardView_post">#d5d7e4</color>
     <color name="black_alpha_40">#66000000</color>
     <color name="full_zadnii">#d5d7e4</color>

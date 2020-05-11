@@ -5,6 +5,7 @@
     android:background="@drawable/add_post_back"
     android:layout_marginRight="5dp"
     android:layout_marginLeft="5dp"
+    android:layout_marginBottom="10dp"
     >
 
     <LinearLayout

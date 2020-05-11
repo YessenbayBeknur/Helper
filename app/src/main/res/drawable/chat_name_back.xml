@@ -7,5 +7,5 @@
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"></corners>
 
-    <solid android:color="@color/Glavni"></solid>
+    <solid android:color="@color/chat_user"></solid>
 </shape>

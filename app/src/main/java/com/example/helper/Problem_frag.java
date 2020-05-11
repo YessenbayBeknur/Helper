@@ -269,7 +269,7 @@ public class Problem_frag extends Fragment {
                             last_chip.setChipBackgroundColorResource(R.color.tran);
                             last_chip.setTextColor(getResources().getColor(R.color.Grey));
                             Chip current_chip = group.findViewById(checkedId);
-                            current_chip.setChipBackgroundColorResource(R.color.Glavni);
+                            current_chip.setChipBackgroundColorResource(R.color.losefind_roz);
                             current_chip.setTextColor(getResources().getColor(R.color.White));
 
                             if (last_id == club_chip.getId()) {
