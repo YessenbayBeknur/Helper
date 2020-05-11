@@ -1,6 +1,7 @@
 package com.example.helper;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,9 +49,11 @@ public class PostAdapter extends ArrayAdapter {
             public void onClick(View view) {
                 ArrayList<String> s = post_adap.get(position).getLikes();
                 s.add(Nav_activity.username.getText().toString());
+                LinkedHashSet<String> hashSet = new LinkedHashSet<>(s);
+                ArrayList<String> listWithoutDuplicates = new ArrayList<>(hashSet);
                 Post p = new Post(post_adap.get(position).getTitle(),post_adap.get(position).getText(),post_adap.get(position).getDate(),
                         post_adap.get(position).getType(),post_adap.get(position).getColor(),post_adap.get(position).getId(),
-                        post_adap.get(position).getWho(),post_adap.get(position).isSolved(),s);
+                        post_adap.get(position).getWho(),post_adap.get(position).isSolved(),listWithoutDuplicates,post_adap.get(position).getBitmaps());
                 mDatabase.child("posts").child(post_adap.get(position).getId()).removeValue();
                 mDatabase.child("posts").child(post_adap.get(position).getId()).setValue(p);
             }
@@ -66,13 +70,13 @@ public class PostAdapter extends ArrayAdapter {
                 post_text.setText(post_adap.get(position).getText().substring(0,30)+"...");
                 post_date.setText(post_adap.get(position).getDate());
                 post_title.setText(post_adap.get(position).getTitle());
-                color_type.setBackgroundColor(post_adap.get(position).getColor());
+                color_type.setBackgroundColor(Color.parseColor(post_adap.get(position).getColor()));
                 post_solve.setImageResource(R.drawable.ic_check_box_black_24dp);
             }else {
                 post_text.setText(post_adap.get(position).getText().substring(0,30)+"...");
                 post_date.setText(post_adap.get(position).getDate());
                 post_title.setText(post_adap.get(position).getTitle());
-                color_type.setBackgroundColor(post_adap.get(position).getColor());
+                color_type.setBackgroundColor(Color.parseColor(post_adap.get(position).getColor()));
                 post_solve.setImageResource(R.drawable.ic_check_box_outline_24dp);
             }
 
@@ -81,14 +85,14 @@ public class PostAdapter extends ArrayAdapter {
                 post_text.setText(post_adap.get(position).getText());
                 post_date.setText(post_adap.get(position).getDate());
                 post_title.setText(post_adap.get(position).getTitle());
-                color_type.setBackgroundColor(post_adap.get(position).getColor());
+                color_type.setBackgroundColor(Color.parseColor(post_adap.get(position).getColor()));
                 post_solve.setImageResource(R.drawable.ic_check_box_black_24dp);
             }
             else {
                 post_text.setText(post_adap.get(position).getText());
                 post_date.setText(post_adap.get(position).getDate());
                 post_title.setText(post_adap.get(position).getTitle());
-                color_type.setBackgroundColor(post_adap.get(position).getColor());
+                color_type.setBackgroundColor(Color.parseColor(post_adap.get(position).getColor()));
                 post_solve.setImageResource(R.drawable.ic_check_box_outline_24dp);
             }
         }

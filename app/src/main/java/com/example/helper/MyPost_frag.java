@@ -44,6 +44,7 @@ public class MyPost_frag extends Fragment {
         frag_title.setText("My posts");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        Nav_activity.button_tool.setVisibility(View.INVISIBLE);
 
         posts = new ArrayList<>();
         postAdapter = new PostAdapter(getContext(),posts);

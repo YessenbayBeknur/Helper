@@ -84,6 +84,18 @@
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                  />
 
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/Grey"
+                app:chipBackgroundColor="@color/tran"
+                android:text="LoseFind"
+                android:id="@+id/losefind_chip"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                />
+
 
         </com.google.android.material.chip.ChipGroup>
 

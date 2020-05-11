@@ -1,15 +1,16 @@
 package com.example.helper;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,18 +20,16 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -47,13 +46,17 @@ public class Full_post extends Fragment {
     private DatabaseReference mDatabase;
     CommentAdapter commentAdapter;
     ArrayList<Comment> comments;
-    DateTimeFormatter dtf;
-    LocalDate localDate;
+    static Bitmap current_bitmap;
+    Bitmap bitmap1;
+    Bitmap bitmap2;
+    Bitmap bitmap3;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.full_post_lay,container,false);
+
+        Nav_activity.button_tool.setVisibility(View.INVISIBLE);
 
         TextView full_date = view.findViewById(R.id.full_date);
         full_date.setText(Problem_frag.checked_post.getDate());
@@ -64,7 +67,7 @@ public class Full_post extends Fragment {
         ImageView circle_type = view.findViewById(R.id.circle_im);
 
         GradientDrawable gr = (GradientDrawable) circle_type.getBackground();
-        gr.setColor(Problem_frag.checked_post.getColor());
+        gr.setColor(Color.parseColor(Problem_frag.checked_post.getColor()));
 
         TextView full_title = view.findViewById(R.id.full_title);
         full_title.setText(Problem_frag.checked_post.getTitle());
@@ -115,6 +118,57 @@ public class Full_post extends Fragment {
                 String key = mDatabase.child("comments").child(Problem_frag.checked_post.getId()).push().getKey();
                 mDatabase.child("comments").child(Problem_frag.checked_post.getId()).child(key).setValue(new Comment(Nav_activity.username.getText().toString(),send_text.getText().toString(),date));
                 send_text.setText("");
+            }
+        });
+
+        ImageButton but1 = view.findViewById(R.id.photo1_full);
+        ImageButton but2 = view.findViewById(R.id.photo2_full);
+        ImageButton but3 = view.findViewById(R.id.photo3_full);
+
+        ArrayList<String> bits = Problem_frag.checked_post.getBitmaps();
+        if(bits != null){
+        for (int i = 0; i < bits.size();i++){
+            if(i==0){
+
+                byte[] byteArray = Base64.decode(bits.get(i),Base64.URL_SAFE);
+                bitmap1 = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                but1.setImageBitmap(bitmap1);
+            }else if (i==1){
+                byte[] byteArray = Base64.decode(bits.get(i),Base64.URL_SAFE);
+                bitmap2 = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                but2.setImageBitmap(bitmap2);
+            }else if (i==2){
+                byte[] byteArray = Base64.decode(bits.get(i),Base64.URL_SAFE);
+                bitmap3 = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                but3.setImageBitmap(bitmap3);
+            }
+        }
+        }
+
+        but1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                current_bitmap = bitmap1;
+                Fragment fragment = new Photo_full();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_lt,fragment).commit();
+            }
+        });
+
+        but2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                current_bitmap = bitmap2;
+                Fragment fragment = new Photo_full();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_lt,fragment).commit();
+            }
+        });
+
+        but3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                current_bitmap = bitmap3;
+                Fragment fragment = new Photo_full();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Frame_lt,fragment).commit();
             }
         });
 

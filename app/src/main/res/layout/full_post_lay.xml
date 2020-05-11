@@ -140,6 +140,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="10dp">
+
+                <ImageButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/photo1_full"
+                    android:background="@drawable/ic_check_box_outline_24dp"/>
+                <ImageButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_toRightOf="@+id/photo1_full"
+                    android:id="@+id/photo2_full"
+                    android:background="@drawable/ic_check_box_outline_24dp"/>
+                <ImageButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_toRightOf="@+id/photo2_full"
+                    android:id="@+id/photo3_full"
+                    android:background="@drawable/ic_check_box_outline_24dp"/>
+
             <ImageButton
                 android:layout_width="45dp"
                 android:layout_height="45dp"

@@ -73,7 +73,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/content_post"
@@ -87,25 +88,54 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="260dp"
+            android:layout_height="240dp"
             android:layout_below="@+id/content_post"
             android:layout_marginLeft="10dp"
             android:paddingLeft="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/add_content_post"
             android:background="@drawable/add_edittext"/>
 
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="45dp"
-            android:text="Post"
-            android:id="@+id/post_add_for_database"
-            android:textColor="@color/Glavni"
-            android:background="@drawable/add_edittext"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_below="@+id/add_content_post"
-            android:layout_centerHorizontal="true"/>
+            android:layout_alignParentStart="true">
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/photo1"
+                android:background="@drawable/ic_check_box_outline_24dp"/>
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/photo1"
+                android:id="@+id/photo2"
+                android:background="@drawable/ic_check_box_outline_24dp"/>
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_toRightOf="@+id/photo2"
+                android:id="@+id/photo3"
+                android:background="@drawable/ic_check_box_outline_24dp"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/post_add_for_database"
+            android:background="@drawable/ic_check_black_24dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 
 

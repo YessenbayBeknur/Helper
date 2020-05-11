@@ -1,19 +1,23 @@
 package com.example.helper;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Post {
     private String date;
     private String text;
     private String title;
     private String type;
-    private int color;
+    private String color;
     private String id;
     private String who;
     private boolean solved;
     private ArrayList<String> likes;
+    private ArrayList<String> bitmaps;
 
-    public Post (String title,String text,String date,String type,int color,String id,String who,boolean solved,ArrayList<String> likes){
+    public Post (String title,String text,String date,String type,String color,String id,String who,boolean solved,ArrayList<String> likes,ArrayList<String> bitmaps){
         this.date = date;
         this.text = text;
         this.title = title;
@@ -23,10 +27,19 @@ public class Post {
         this.who = who;
         this.solved =solved;
         this.likes = likes;
+        this.bitmaps = bitmaps;
     }
 
     public Post(){
 
+    }
+
+    public void setBitmaps(ArrayList<String> bitmaps) {
+        this.bitmaps = bitmaps;
+    }
+
+    public ArrayList<String> getBitmaps() {
+        return bitmaps;
     }
 
     public boolean isSolved() {
@@ -62,7 +75,7 @@ public class Post {
         return likes;
     }
 
-    public int getColor() {
+    public String getColor() {
         return color;
     }
 
@@ -74,7 +87,7 @@ public class Post {
         this.who = who;
     }
 
-    public void setColor(int color) { this.color = color; }
+    public void setColor(String color) { this.color = color; }
 
     public void setId(String id) {
         this.id = id;
@@ -98,6 +111,34 @@ public class Post {
     public void setText(String text) {
         this.text = text;
     }
+
+    public static Comparator<Post> PostLikeComparator = new Comparator<Post>() {
+
+        public int compare(Post p1, Post p2) {
+            int s1 = p1.likes.size();
+            int s2 = p2.likes.size();
+
+
+            return s2 - s1;
+
+
+        }};
+
+    public static Comparator<Post> PostSolveComparator = new Comparator<Post>() {
+
+        public int compare(Post p1, Post p2) {
+            int s1 = 0;
+            int s2 = 0;
+            if(p1.solved){
+                s1 = 1;
+            }
+            if (p2.solved){
+                s2 = 1;
+            }
+
+            return s2 - s1;
+
+        }};
 
 
 }

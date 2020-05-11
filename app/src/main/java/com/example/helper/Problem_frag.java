@@ -1,19 +1,19 @@
 package com.example.helper;
 
 
+import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.google.android.material.chip.Chip;
@@ -42,8 +42,10 @@ public class Problem_frag extends Fragment {
     PostAdapter postAdapter;
     ArrayList<Post> posts;
     ArrayList<Post> sort_posts;
+    static ArrayList<Post> sort_by_date_post;
     static int last_id;
     static Post checked_post;
+    Dialog dialog;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class Problem_frag extends Fragment {
         final TextView frag_title = Nav_activity.toolbar.findViewById(R.id.frag_title);
         frag_title.setText("Problems");
 
-        Button add_button = view.findViewById(R.id.add_prob_post);
+        final Button add_button = view.findViewById(R.id.add_prob_post);
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +74,7 @@ public class Problem_frag extends Fragment {
         final Chip ashana_chip = choiceChipGroup.findViewById(R.id.ashana_chip);
         final Chip university_chip = choiceChipGroup.findViewById(R.id.university_chip);
         final Chip club_chip = choiceChipGroup.findViewById(R.id.club_chip);
+        final Chip losefind_chip = choiceChipGroup.findViewById(R.id.losefind_chip);
 
         last_id = choiceChipGroup.getCheckedChipId();
 
@@ -79,7 +82,60 @@ public class Problem_frag extends Fragment {
 
         posts = new ArrayList<>();
         sort_posts = new ArrayList<>();
+        sort_by_date_post = new ArrayList<>();
         postAdapter = new PostAdapter(getContext(),posts);
+
+        Nav_activity.button_tool.setVisibility(View.VISIBLE);
+
+        Nav_activity.button_tool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_sort_problem);
+                dialog.getWindow().setLayout(450,510);
+                dialog.show();
+
+                final RadioButton by_date = dialog.findViewById(R.id.sort_by_date);
+                final RadioButton by_solve = dialog.findViewById(R.id.sort_by_solve);
+                final RadioButton by_like = dialog.findViewById(R.id.sort_by_like);
+                final RadioButton by_unsolve = dialog.findViewById(R.id.sort_by_unsolve);
+                Button sort_button = dialog.findViewById(R.id.butt_sort);
+                RadioGroup sort = dialog.findViewById(R.id.radio_sort);
+
+                sort_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(by_date.isChecked()){
+                            posts.clear();
+                            for (int i = 0; i<sort_by_date_post.size();i++){
+                                posts.add(sort_by_date_post.get(i));
+                            }
+                            Collections.reverse(posts);
+                            postAdapter.notifyDataSetChanged();
+
+                            dialog.dismiss();
+                        }else if (by_like.isChecked()){
+                            Collections.sort(posts,Post.PostLikeComparator);
+                            postAdapter.notifyDataSetChanged();
+
+                            dialog.dismiss();
+                        }else if (by_solve.isChecked()){
+                            Collections.sort(posts,Post.PostSolveComparator);
+                            postAdapter.notifyDataSetChanged();
+
+                            dialog.dismiss();
+                        }else if (by_unsolve.isChecked()){
+                            Collections.sort(posts,Post.PostSolveComparator);
+                            Collections.reverse(posts);
+                            postAdapter.notifyDataSetChanged();
+
+                            dialog.dismiss();
+                        }
+                    }
+                });
+
+            }
+        });
 
 
 
@@ -102,6 +158,7 @@ public class Problem_frag extends Fragment {
                     posts.add(d.getValue(Post.class));
                 }
                 sort_posts = (ArrayList<Post>) posts.clone();
+                sort_by_date_post = (ArrayList<Post>) posts.clone();
                 Collections.reverse(posts);
                 postAdapter.notifyDataSetChanged();
             }
@@ -204,12 +261,23 @@ public class Problem_frag extends Fragment {
 
                             if (last_id == university_chip.getId()) {
                                 choiceChipGroup.setPaddingRelative(choiceChipGroup.getPaddingStart() - 240, 0, 0, 0);
+                            }else {
+                                choiceChipGroup.setPaddingRelative(choiceChipGroup.getPaddingStart() + 240, 0, 0, 0);
+                            }
+                        }else if(checkedId == losefind_chip.getId()) {
+                            Chip last_chip = group.findViewById(last_id);
+                            last_chip.setChipBackgroundColorResource(R.color.tran);
+                            last_chip.setTextColor(getResources().getColor(R.color.Grey));
+                            Chip current_chip = group.findViewById(checkedId);
+                            current_chip.setChipBackgroundColorResource(R.color.Glavni);
+                            current_chip.setTextColor(getResources().getColor(R.color.White));
+
+                            if (last_id == club_chip.getId()) {
+                                choiceChipGroup.setPaddingRelative(choiceChipGroup.getPaddingStart() - 240, 0, 0, 0);
                             }
                         }
                         last_id = checkedId;
                     }
-
-
             }
         });
 

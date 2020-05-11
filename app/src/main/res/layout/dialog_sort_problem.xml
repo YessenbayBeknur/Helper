@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/radio_sort"
+        android:layout_margin="10dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            android:textColor="@color/Glavni"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/sort_by_date"
+            android:text="by date(default)"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textSize="15dp"
+            android:textColor="@color/Glavni"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/sort_by_like"
+            android:text="popular"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:layout_marginBottom="10dp"
+            android:textSize="15dp"
+            android:textColor="@color/Glavni"
+            android:id="@+id/sort_by_solve"
+            android:text="by solve"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textSize="15dp"
+            android:textColor="@color/Glavni"
+            android:id="@+id/sort_by_unsolve"
+            android:text="by unsolve"/>
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/butt_sort"
+        android:text="Sort"
+        android:textAlignment="center"
+        android:background="@color/Glavni"
+        android:textColor="@color/White"
+        />
+</RelativeLayout>

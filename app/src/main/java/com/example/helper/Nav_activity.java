@@ -9,6 +9,7 @@ import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,6 +45,7 @@ public class Nav_activity extends AppCompatActivity
     static TextView username;
     ImageView user_photo;
     DatabaseReference mDatabase;
+    static ImageButton button_tool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +60,16 @@ public class Nav_activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setBackground(getDrawable(R.drawable.grad_head_back));
         View header = navigationView.inflateHeaderView(R.layout.nav_header_nav_activity);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        button_tool = findViewById(R.id.button_tool);
+
+
+
+
 
         username = header.findViewById(R.id.username);
         final FirebaseUser user = mAuth.getCurrentUser();

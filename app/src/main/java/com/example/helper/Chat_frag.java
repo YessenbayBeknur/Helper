@@ -33,6 +33,8 @@ public class Chat_frag extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.chat_frag_lay,container,false);
 
+        Nav_activity.button_tool.setVisibility(View.INVISIBLE);
+
         TextView frag_title = Nav_activity.toolbar.findViewById(R.id.frag_title);
         frag_title.setText("Chat");
 
